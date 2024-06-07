@@ -1,4 +1,4 @@
-# terraform-equinix-networkede-vnf
+# terraform-equinix-networkedge-vnf
 
 Based on the scrum project within EMEA/APAC TAM.   Provisioning a pair of redundant vnf per your need.
 
