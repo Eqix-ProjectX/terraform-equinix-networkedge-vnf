@@ -38,16 +38,16 @@ resource "equinix_network_device" "c8kv-ha" {
 }
 
 resource "iosxe_interface_ethernet" "to_metal" {
-  type                           = "GigabitEthernet"
-  name                           = "3"
-  bandwidth                      = 1000000
-  description                    = "linktometal"
+  type                           = var.int_type
+  name                           = var.int_name
+  bandwidth                      = var.int_bw
+  description                    = var.int_desc
   shutdown                       = false
   ip_proxy_arp                   = false
   ip_redirects                   = false
   ip_unreachables                = false
-  ipv4_address                   = "192.168.0.2"
-  ipv4_address_mask              = "255.255.255.252"
+  ipv4_address                   = var.int_ipv4
+  ipv4_address_mask              = var.int_mask
   # ip_dhcp_relay_source_interface = "Loopback100"
   # ip_access_group_in             = "1"
   # ip_access_group_in_enable      = true
@@ -82,8 +82,8 @@ resource "iosxe_interface_ethernet" "to_metal" {
   #     eui_64 = true
   #   }
   # ]
-  arp_timeout             = 300
-  spanning_tree_link_type = "point-to-point"
+  # arp_timeout             = 300
+  # spanning_tree_link_type = "point-to-point"
   # service_policy_input    = "POLICY1"
   # service_policy_output   = "POLICY1"
 }
