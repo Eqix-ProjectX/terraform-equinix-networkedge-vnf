@@ -40,8 +40,8 @@ resource "equinix_network_device" "c8kv-ha" {
     connection {
       type     = "ssh"
       user     = var.username
-      password = equinix_network_device.c8kv.vendor_configuration[0]
-      host     = equinix_network_device.c8kv.ssh_ip_address
+      password = equinix_network_device.c8kv-ha.vendor_configuration[0]
+      host     = equinix_network_device.c8kv-ha.ssh_ip_address
     }
     inline     = [
       "conf t",
