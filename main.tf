@@ -35,6 +35,20 @@ resource "equinix_network_device" "c8kv-ha" {
     username        = var.username
     key_name        = var.key_name
   }
+
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = var.username
+      password = equinix_network_device.c8kv.vendor_configuration[0]
+      host     = equinix_network_device.c8kv.ssh_ip_address
+    }
+    inline     = [
+      "conf t",
+      "ip http secure-server",
+      "restconf"
+    ]    
+  }
 }
 
 resource "iosxe_interface_ethernet" "to_metal" {
