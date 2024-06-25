@@ -51,6 +51,7 @@ resource "equinix_network_device" "c8kv-ha" {
   }
 }
 
+/*
 resource "iosxe_interface_ethernet" "to_metal" {
   type                           = var.int_type
   name                           = var.int_name
@@ -101,3 +102,4 @@ resource "iosxe_interface_ethernet" "to_metal" {
   # service_policy_input    = "POLICY1"
   # service_policy_output   = "POLICY1"
 }
+*/
