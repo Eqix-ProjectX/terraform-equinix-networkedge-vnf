@@ -46,7 +46,7 @@ resource "equinix_network_device" "c8kv-ha" {
     inline     = [
       "conf t",
       "ip http secure-server",
-      "restconf"
+      "restconf",
       "hostname lab-provisioner"
     ]    
   }
