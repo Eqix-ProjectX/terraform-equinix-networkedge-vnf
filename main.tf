@@ -47,6 +47,7 @@ resource "equinix_network_device" "c8kv-ha" {
       "conf t",
       "ip http secure-server",
       "restconf"
+      "hostname lab-provisioner"
     ]    
   }
 }
