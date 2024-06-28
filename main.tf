@@ -36,20 +36,20 @@ resource "equinix_network_device" "c8kv-ha" {
     key_name        = var.key_name
   }
 
-  provisioner "remote-exec" {
-    connection {
-      type     = "ssh"
-      user     = var.username
-      password = equinix_network_device.c8kv-ha.vendor_configuration.adminPassword
-      host     = equinix_network_device.c8kv-ha.ssh_ip_address
-      timeout  = "5m"
-    }
-    inline     = [
-      "conf t",
-      "ip http secure-server",
-      "restconf"
-    ]    
-  }
+  # provisioner "remote-exec" {
+  #   connection {
+  #     type     = "ssh"
+  #     user     = var.username
+  #     password = equinix_network_device.c8kv-ha.vendor_configuration.adminPassword
+  #     host     = equinix_network_device.c8kv-ha.ssh_ip_address
+  #     timeout  = "5m"
+  #   }
+  #   inline     = [
+  #     "conf t",
+  #     "ip http secure-server",
+  #     "restconf"
+  #   ]    
+  # }
 }
 
 /*
