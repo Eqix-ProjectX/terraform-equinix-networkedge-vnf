@@ -36,6 +36,11 @@ resource "equinix_network_device" "c8kv-ha" {
     key_name        = var.key_name
   }
 
+  provisioner "local-exec" {
+    command = "python restconf.py"
+  }
+  depends_on = [ local_file.restconf ]
+
   # provisioner "remote-exec" {
   #   connection {
   #     type     = "ssh"
@@ -52,6 +57,27 @@ resource "equinix_network_device" "c8kv-ha" {
   # }
 }
 
+resource "local_file" "restconf" {
+  content = <<-EOF
+  from netmiko import ConnectHandler
+
+  c8kv = {
+      'device_type': 'cisco_xe',
+      'host'       : '${equinix_network_device.c8kv-ha.ssh_ip_address}',
+      'username'   : '${var.username}',
+      'password'   : '${equinix_network_device.c8kv-ha.vendor_configuration.adminPassword}'
+      }
+  
+  net_connect = ConnectHandler(**c8kv)
+  config_commands = [
+    'ip http secure-server',
+    'restconf'
+  ]
+  output = net_connect.send_config_set(config_commands)
+  print(output)
+  EOF
+  filename = "restconf.py"
+}
 /*
 resource "iosxe_interface_ethernet" "to_metal" {
   type                           = var.int_type
