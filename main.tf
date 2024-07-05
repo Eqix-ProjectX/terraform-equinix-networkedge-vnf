@@ -35,12 +35,6 @@ resource "equinix_network_device" "c8kv-ha" {
     username        = var.username
     key_name        = var.key_name
   }
-
-  provisioner "local-exec" {
-    command = "python restconf.py"
-  }
-  depends_on = [ local_file.restconf ]
-
   # provisioner "remote-exec" {
   #   connection {
   #     type     = "ssh"
@@ -55,6 +49,13 @@ resource "equinix_network_device" "c8kv-ha" {
   #     "restconf"
   #   ]    
   # }
+}
+
+resource "null_resource" "config" {
+  provisioner "local-exec" {
+  command = "python restconf.py"
+  }
+  depends_on = [ local_file.restconf ]
 }
 
 resource "local_file" "restconf" {
