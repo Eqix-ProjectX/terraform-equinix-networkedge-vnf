@@ -6,6 +6,7 @@ terraform {
     }
     iosxe   = {
       source = "CiscoDevNet/iosxe"
+      version = "0.5.6"
     }
   }
 }
