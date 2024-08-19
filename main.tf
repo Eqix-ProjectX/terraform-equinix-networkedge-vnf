@@ -10,14 +10,14 @@ data "equinix_network_account" "sec" {
 */
 
 resource "equinix_network_device" "c8kv-ha" {
-  name              = "vd-${var.metro_code}-${var.username}-pre"
+  name              = "vd-${var.metro_code}-${var.username}-pri"
   metro_code        = var.metro_code
   type_code         = var.type_code
   self_managed      = true
   byol              = true
   package_code      = var.package_code
   notifications     = var.notifications
-  hostname          = "vd-${var.metro_code}-${var.username}-pre"
+  hostname          = "vd-${var.metro_code}-${var.username}-pri"
   term_length       = 12
   account_number    = var.account_number
   version           = var.ver
