@@ -10,6 +10,12 @@ output "ssh_ip_vd" {
 output "ssh_ip_vd_sec" {
   value = equinix_network_device.c8kv-ha.secondary_device[0].ssh_ip_address
 }
+output "vd_uuid" {
+  value = equinix_network_device.c8kv-ha.uuid
+}
+output "vd_uuid_sec" {
+  value = equinix_network_device.c8kv-ha.secondary_device[0].uuid
+}
 output "pass" {
   value = equinix_network_device.c8kv-ha.vendor_configuration.adminPassword
   sensitive = true
